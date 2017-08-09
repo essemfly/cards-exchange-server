@@ -1,14 +1,24 @@
-from pygments.lexers import get_all_lexers
-from pygments.styles import get_all_styles
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
-LEXERS = [item for item in get_all_lexers() if item[1]]
-LANGUAGE_CHOICES = sorted([(item[1][0], item[0]) for item in LEXERS])
-STYLE_CHOICES = sorted((item, item) for item in get_all_styles())
+UserModel = get_user_model()
 
 
-class UserSerializer(serializers.ModelSerializer):
+class AccountSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'date_joined',)
+        model = get_user_model()
+        fields = ('id', 'username', 'email', 'first_name', 'last_name', 'date_joined', 'password',)
+
+    password = serializers.CharField(write_only=True)
+
+    def create(self, validated_data):
+        user = UserModel.objects.create(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name']
+        )
+        user.set_password(validated_data['password'])
+        user.save()
+
+        return user

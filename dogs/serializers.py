@@ -1,8 +1,17 @@
 from rest_framework import serializers
-from dogs.models import Dogs
+from dogs.models import DogsImage
 
 
-class DogSerializer(serializers.ModelSerializer):
+class DogsImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Dogs
+        model = DogsImage
         fields = '__all__'
+
+    def save(self, validated_data):
+        dog_image = DogsImage.objects.create(
+            name=validated_data['name'],
+            datafile=validated_data['datafile'],
+            description=validated_data['description'],
+        )
+        dog_image.save()
+        return dog_image

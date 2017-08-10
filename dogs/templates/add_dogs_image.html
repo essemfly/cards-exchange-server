@@ -1,0 +1,30 @@
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<h2>개를 추가하는 공간입니다</h2>
+<div>
+    개 추가하는 것이 들어갈 예정입니다
+    <form enctype="multipart/form-data" action="//127.0.0.1:8000/dogs/images" method="post" class="putImages" name="image-form">
+       <input name="datafile" type="file" multiple/>
+       <input class="button" type="submit" alt="Upload" value="Upload" />
+    </form>
+</div>
+<div>
+    개의 이미지가 들어갈 예정입니다
+</div>
+<script type="application/javascript">
+{#    $.ajax({#}
+{#        method: "GET",#}
+{#        url: "//127.0.0.1:8000/dogs/list",#}
+{#        data: {name: "John", location: "Boston"}#}
+{#    })#}
+{#        .done(function (msg) {#}
+{#            alert("Data Saved: " + msg);#}
+{#        });#}
+</script>
+</body>
+</html>

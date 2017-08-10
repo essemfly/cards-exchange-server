@@ -1,12 +1,4 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from django.views.generic import TemplateView
 
-from dogs.models import Dogs
-from dogs.serializers import DogSerializer
-
-
-class DogsList(APIView):
-    def get(self, request):
-        dogs = Dogs.objects.order_by('created_at').all()
-        serialized = DogSerializer(dogs, many=True)
-        return Response(serialized.data)
+class DogsRegisterView(TemplateView):
+    template_name = 'add_dogs_image.html'

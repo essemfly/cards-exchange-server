@@ -100,3 +100,6 @@ ENV/
 
 # pycharm
 .idea
+
+# uploaded images
+media/

@@ -11,13 +11,17 @@ class DogsImageRegister(APIView):
     ]
 
     def post(self, request):
-        dog_image_data = {
-            'name': request.data.get('name'),
-            'datafile': request.data.get('datafile'),
-            'description': 'test for description',
-        }
-
         serializer = DogsImageSerializer()
-        serializer.save(dog_image_data)
+        print(len(request.FILES.getlist('images')))
+
+
+        for img_file in request.FILES.getlist('images'):
+            dog_image_data = {
+                'name': request.data.get('name'),
+                'datafile': img_file,
+                'description': 'test for description',
+            }
+
+            serializer.save(dog_image_data)
 
         return redirect('/dogs/register')

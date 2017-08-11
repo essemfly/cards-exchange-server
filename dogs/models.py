@@ -5,6 +5,6 @@ from django.db import models
 
 class DogsImage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    datafile = models.ImageField(upload_to='media/dog_images')
+    datafile = models.ImageField(upload_to='dog_images')
     name = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=1000, null=True)

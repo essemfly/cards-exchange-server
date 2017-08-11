@@ -26,7 +26,7 @@ SECRET_KEY = '5j$)-%40o9@fjh6f8oeg(rx^%8-z_ko%v3*+=0yhg@9bib+sg3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['api.essemfly.com']
+ALLOWED_HOSTS = ['api.essemfly.com', 'localhost']
 
 # Application definition
 
@@ -116,6 +116,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Rest Frameworks with jwt
 

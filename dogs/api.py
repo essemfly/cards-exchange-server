@@ -38,9 +38,10 @@ class DogsImageResponse(APIView):
         random.shuffle(images)
         ret = {
             "message": {
-                "text": images[0].description,
+                "text": '',
                 "photo": {
-                    "url": 'http:/api.essemfly.com/' + images[0].datafile.url,
+                    "url": "http://api.essemfly.com" + images[0].datafile.url,
+                    #"url": "http://placekitten.com/640/480",
                     "width": 640,
                     "height": 480,
                 }
@@ -62,11 +63,9 @@ class DogsKeyboard(APIView):
 
     def get(self, request):
         ret = {
-            "keyboard": {
-                "type": "buttons",
-                "buttons": [
-                    "사진보기",
-                ]
-            }
+            "type": "buttons",
+            "buttons": [
+                "사진보기",
+            ]
         }
         return Response(ret)

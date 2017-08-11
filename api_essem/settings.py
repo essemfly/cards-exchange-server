@@ -26,7 +26,7 @@ SECRET_KEY = '5j$)-%40o9@fjh6f8oeg(rx^%8-z_ko%v3*+=0yhg@9bib+sg3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['api.essemfly.com']
 
 # Application definition
 

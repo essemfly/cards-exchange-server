@@ -41,7 +41,6 @@ class DogsImageResponse(APIView):
                 "text": '',
                 "photo": {
                     "url": "http://api.essemfly.com" + images[0].datafile.url,
-                    #"url": "http://placekitten.com/640/480",
                     "width": 640,
                     "height": 480,
                 }

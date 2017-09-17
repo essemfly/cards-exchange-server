@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'dogs.apps.DogsConfig',
+    'cards.apps.CardsConfig',
 ]
 
 MIDDLEWARE = [

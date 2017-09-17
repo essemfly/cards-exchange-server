@@ -26,7 +26,7 @@ SECRET_KEY = '5j$)-%40o9@fjh6f8oeg(rx^%8-z_ko%v3*+=0yhg@9bib+sg3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['api.essemfly.com', 'localhost']
+ALLOWED_HOSTS = ['api.essemfly.com']
 
 # Application definition
 
@@ -37,10 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_auth',
+    'rest_auth.registration',
     'dogs.apps.DogsConfig',
 ]
 
@@ -142,3 +146,11 @@ JWT_UTH = {
 }
 
 REST_USE_JWT = True
+
+SITE_ID = 1
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'essemfly'
+EMAIL_HOST_PASSWORD = 'rhkxkq8832'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

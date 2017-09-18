@@ -26,8 +26,6 @@ schema_view = get_swagger_view(title='Essem API')
 urlpatterns = [
     url(r'^$', schema_view),
     url(r'^', include('rest_auth.urls')),
-    url(r'^registration/account-confirm-email/(?P<key>[-:\w]+)/$',
-                      allauthemailconfirmation, name="account_confirm_email"),
     url(r'^registration/', include('rest_auth.registration.urls')),
     url(r'^dogs/', include('dogs.urls')),
     url(r'^admin/', admin.site.urls),

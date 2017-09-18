@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 class CardGroup(models.Model):
     name = models.CharField(max_length=100, null=False)
 
+    def __str__(self):
+        return self.name
+
 
 class CardMember(models.Model):
     name = models.CharField(max_length=50, null=False)
@@ -12,15 +15,24 @@ class CardMember(models.Model):
     group = models.ForeignKey(CardGroup, on_delete=models.CASCADE)
     birthday = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
 
 class CardType(models.Model):
     name = models.CharField(max_length=100, null=False)
     group = models.ForeignKey(CardGroup, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class CardVersion(models.Model):
     name = models.CharField(max_length=100, null=False)
     group = models.ForeignKey(CardGroup, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class Card(models.Model):

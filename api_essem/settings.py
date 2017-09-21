@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'dogs.apps.DogsConfig',
     'cards.apps.CardsConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Rest Frameworks with jwt
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
     'DEFAULT_PERMISSION_CLASSES': (
         # 'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.AllowAny',

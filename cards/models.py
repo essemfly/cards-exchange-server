@@ -41,11 +41,16 @@ class Card(models.Model):
     member = models.ForeignKey(CardMember)
     type = models.ForeignKey(CardType)
 
+    def __str__(self):
+        return '%s - %s - %s -%s' % (self.group, self.member, self.version, self.type)
+
 
 class CardRequest(models.Model):
-    requester_id = models.ForeignKey(User, unique=False)
-    requested_card = models.ForeignKey(Card, related_name='have_card')
-    matched_card = models.ForeignKey(Card, null=True, related_name='want_card')
+    requester = models.ForeignKey(User, unique=False, related_name='request_user')
+    matcher = models.ForeignKey(User, related_name='matched_user', null=True, blank=True)
+    have_card = models.ForeignKey(Card, related_name='have_card')
+    want_card = models.ForeignKey(Card, related_name='want_card')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     matched_date = models.DateTimeField(null=True, blank=True)
+    status = models.IntegerField(default=1)

@@ -48,12 +48,14 @@ INSTALLED_APPS = [
     'dogs.apps.DogsConfig',
     'cards.apps.CardsConfig',
     'django_filters',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -159,3 +161,5 @@ EMAIL_HOST_USER = 'essemfly'
 EMAIL_HOST_PASSWORD = 'rhkxkq8832'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+CORS_ORIGIN_ALLOW_ALL = True

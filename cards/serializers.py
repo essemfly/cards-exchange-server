@@ -24,7 +24,7 @@ class CardRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CardRequest
-        fields = ('requester', 'matcher', 'have_card', 'want_card',
+        fields = ('id', 'requester', 'matcher', 'have_card', 'want_card',
                   'created_date', 'updated_date', 'matched_date', 'status', 'want_card_id', 'have_card_id')
 
     def create(self, validated_data):

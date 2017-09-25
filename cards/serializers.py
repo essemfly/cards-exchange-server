@@ -11,16 +11,26 @@ class CardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Card
-        fields = ('member', 'group', 'version', 'type',)
+        fields = ('id', 'member', 'group', 'version', 'type',)
 
 
 class CardRequestSerializer(serializers.ModelSerializer):
-    requester = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    matcher = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
-    have_card = serializers.StringRelatedField()
-    want_card = serializers.StringRelatedField()
+    requester = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
+    matcher = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
+    have_card = CardSerializer(read_only=True)
+    want_card = CardSerializer(read_only=True)
+    have_card_id = serializers.PrimaryKeyRelatedField(queryset=Card.objects.all(), source='have_card', write_only=True)
+    want_card_id = serializers.PrimaryKeyRelatedField(queryset=Card.objects.all(), source='want_card', write_only=True)
 
     class Meta:
         model = CardRequest
         fields = ('requester', 'matcher', 'have_card', 'want_card',
-                  'created_date', 'updated_date', 'matched_date', 'status')
+                  'created_date', 'updated_date', 'matched_date', 'status', 'want_card_id', 'have_card_id')
+
+    def create(self, validated_data):
+        card_request = CardRequest.objects.create(
+            requester=self.context['request'].user,
+            have_card=validated_data['have_card'],
+            want_card=validated_data['want_card']
+        )
+        return card_request

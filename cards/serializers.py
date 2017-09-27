@@ -16,7 +16,8 @@ class CardSerializer(serializers.ModelSerializer):
 
 class CardRequestSerializer(serializers.ModelSerializer):
     requester = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
-    matcher = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), required=False)
+    matcher = serializers.SlugRelatedField(read_only=True, required=False,
+                                           slug_field='email')
     have_card = CardSerializer(read_only=True)
     want_card = CardSerializer(read_only=True)
     have_card_id = serializers.PrimaryKeyRelatedField(queryset=Card.objects.all(), source='have_card', write_only=True)

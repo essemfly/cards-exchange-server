@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '5j$)-%40o9@fjh6f8oeg(rx^%8-z_ko%v3*+=0yhg@9bib+sg3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['api.essemfly.com']
+ALLOWED_HOSTS = ['api.essemfly.com', '127.0.0.1']
 
 # Application definition
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'dogs.apps.DogsConfig',
     'cards.apps.CardsConfig',
+    'push_server.apps.PushServerConfig',
     'django_filters',
     'corsheaders',
 ]
